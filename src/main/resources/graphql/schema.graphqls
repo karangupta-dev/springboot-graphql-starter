@@ -1,16 +1,24 @@
+type Author {
+    id: ID!
+    name: String!
+}
 
 type Book {
     id: ID!
     title: String!
-    author: String!
+    authorId: ID!
     price: Float!
 }
 
 type Query {
     allBooks: [Book]
+    allAuthors:[Author]
     bookById(id: ID!): Book
+    booksByAuthorId(id: ID!): [Book]
 }
 
 type Mutation {
-    addBook(id: ID!, title: String!, author: String!, price: Float!): Book
+    addAuthor(id:ID!, name: String!): Author
+
+    addBook(id: ID!, title: String!, authorId: ID!, price: Float!): Book
 }
