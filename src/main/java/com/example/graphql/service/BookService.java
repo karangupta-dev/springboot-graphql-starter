@@ -26,4 +26,9 @@ public class BookService {
     public Book addBook(Book book) {
         return bookRepo.save(book);
     }
+
+    public List<Book> getBooksByAuthorId(String id) {
+        return bookRepo.findByAuthorId(id);
+    }
+
 }

@@ -1,24 +1,51 @@
 type Author {
     id: ID!
     name: String!
+    books: [Book]!
 }
 
 type Book {
+    id: ID!
+    title: String!
+    author: Author!
+    price: Float!
+}
+
+type Query {
+    allBooks: [Book]
+    bookById(id: ID!): Book
+    booksByAuthorId(id: ID!): [Book]
+
+    allAuthors:[Author]
+    authorById(id: ID!): Author
+}
+
+type Mutation {
+    addBook(input: AddBookInput!): Book
+    updateAuthorForBook(input: UpdateBookAuthorInput!): Book
+
+    addAuthor(input: AddAuthorInput!): Author
+    updateAuthorName(input: UpdateAuthorInput!): Author
+}
+
+input AddAuthorInput {
+    id: ID!
+    name: String!
+}
+
+input AddBookInput {
     id: ID!
     title: String!
     authorId: ID!
     price: Float!
 }
 
-type Query {
-    allBooks: [Book]
-    allAuthors:[Author]
-    bookById(id: ID!): Book
-    booksByAuthorId(id: ID!): [Book]
+input UpdateAuthorInput {
+    id: ID!
+    name: String!
 }
 
-type Mutation {
-    addAuthor(id:ID!, name: String!): Author
-
-    addBook(id: ID!, title: String!, authorId: ID!, price: Float!): Book
+input UpdateBookAuthorInput {
+    id: ID!
+    authorId: ID!
 }
