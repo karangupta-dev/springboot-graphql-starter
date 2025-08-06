@@ -26,17 +26,13 @@ public class BookService {
         return bookRepo.findById(Long.parseLong(id)).orElse(null);
     }
 
-    public Book addBook(Book book) {
-        return bookRepo.save(book);
-    }
-
     public List<Book> getBooksByAuthorId(String id) {
         return bookRepo.findByAuthorId(id);
     }
 
     public Book saveOrUpdateBook(AddOrUpdateBookInput input) {
         Author author = new Author();
-        author.setId(input.getAuthorId());
+        author.setId(Long.parseLong(input.getAuthorId()));
 
         Book book = new Book();
         if (!Objects.isNull(input.getId())) {

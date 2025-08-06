@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="book")
+@Table(name = "book")
 public class Book {
 
     @Id
@@ -27,12 +27,27 @@ public class Book {
         this.author = author;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

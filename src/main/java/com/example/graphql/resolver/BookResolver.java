@@ -37,7 +37,7 @@ public class BookResolver {
     }
 
     @SchemaMapping(typeName = "Book", field = "authorId")
-    public String getAuthorId(Book book) {
+    public Long getAuthorId(Book book) {
         return book.getAuthor().getId();
     }
 

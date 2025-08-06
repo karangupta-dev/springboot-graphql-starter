@@ -22,7 +22,6 @@ type Query {
 
 type Mutation {
     addOrUpdateBook(input: AddOrUpdateBookInput!): Book
-
     addOrUpdateAuthor(input: AddOrUpdateAuthorInput!): Author
  }
 
