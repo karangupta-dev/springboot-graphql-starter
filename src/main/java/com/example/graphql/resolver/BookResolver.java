@@ -35,10 +35,15 @@ public class BookResolver {
         return bookService.getBookById(id);
     }
 
-//    @SchemaMapping(typeName = "Author", field = "books")
-//    public List<Book> booksByAuthorId(@Argument String id) {
-//        return bookService.getBooksByAuthorId(id);
-//    }
+    @SchemaMapping(typeName = "Author", field = "books")
+    public List<Book> booksByAuthorId(@Argument String id) {
+        return bookService.getBooksByAuthorId(id);
+    }
+
+    @SchemaMapping(typeName = "Book", field = "authorId")
+    public String getAuthorId(Book book) {
+        return book.getAuthor().getId();
+    }
 
     @MutationMapping
     public Book addBook(@Argument("input") AddBookInput input) {
