@@ -1,10 +1,8 @@
 
 package com.example.graphql.resolver;
 
-import com.example.graphql.DTO.AddBookInput;
-import com.example.graphql.model.Author;
+import com.example.graphql.DTO.AddOrUpdateBookInput;
 import com.example.graphql.model.Book;
-import com.example.graphql.service.AuthorService;
 import com.example.graphql.service.BookService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -18,11 +16,9 @@ import java.util.List;
 public class BookResolver {
 
     private final BookService bookService;
-    private final AuthorService authorService;
 
-    public BookResolver(BookService bookService, AuthorService authorService) {
+    public BookResolver(BookService bookService) {
         this.bookService = bookService;
-        this.authorService = authorService;
     }
 
     @QueryMapping
@@ -35,7 +31,7 @@ public class BookResolver {
         return bookService.getBookById(id);
     }
 
-    @SchemaMapping(typeName = "Author", field = "books")
+    @QueryMapping
     public List<Book> booksByAuthorId(@Argument String id) {
         return bookService.getBooksByAuthorId(id);
     }
@@ -46,15 +42,7 @@ public class BookResolver {
     }
 
     @MutationMapping
-    public Book addBook(@Argument("input") AddBookInput input) {
-        Author author = new Author();
-        author.setId(input.getAuthorId());
-
-        Book book = new Book();
-        book.setId(input.getId());
-        book.setTitle(input.getTitle());
-        book.setAuthor(author);
-        book.setPrice(input.getPrice());
-        return bookService.addBook(book);
+    public Book addOrUpdateBook(@Argument("input") AddOrUpdateBookInput input) {
+        return bookService.saveOrUpdateBook(input);
     }
 }

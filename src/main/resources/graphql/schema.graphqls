@@ -21,31 +21,19 @@ type Query {
 }
 
 type Mutation {
-    addBook(input: AddBookInput!): Book
-    updateAuthorForBook(input: UpdateBookAuthorInput!): Book
+    addOrUpdateBook(input: AddOrUpdateBookInput!): Book
 
-    addAuthor(input: AddAuthorInput!): Author
-    updateAuthorName(input: UpdateAuthorInput!): Author
-}
+    addOrUpdateAuthor(input: AddOrUpdateAuthorInput!): Author
+ }
 
-input AddAuthorInput {
+input AddOrUpdateAuthorInput {
     id: ID!
     name: String!
 }
 
-input AddBookInput {
-    id: ID!
+input AddOrUpdateBookInput {
+    id: ID
     title: String!
     authorId: ID!
     price: Float!
-}
-
-input UpdateAuthorInput {
-    id: ID!
-    name: String!
-}
-
-input UpdateBookAuthorInput {
-    id: ID!
-    authorId: ID!
 }

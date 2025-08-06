@@ -1,6 +1,6 @@
 package com.example.graphql.DTO;
 
-public class AddBookInput {
+public class AddOrUpdateBookInput {
     private String id;
     private String title;
     private String authorId;
