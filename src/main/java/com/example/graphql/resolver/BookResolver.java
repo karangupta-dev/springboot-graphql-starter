@@ -1,6 +1,7 @@
 
 package com.example.graphql.resolver;
 
+import com.example.graphql.DTO.AddBookInput;
 import com.example.graphql.model.Author;
 import com.example.graphql.model.Book;
 import com.example.graphql.service.AuthorService;
@@ -40,20 +41,15 @@ public class BookResolver {
 //    }
 
     @MutationMapping
-    public Book addBook(@Argument String id,
-                        @Argument String title,
-                        @Argument String authorId,
-                        @Argument double price) {
-
-
-//        Author author =
-
+    public Book addBook(@Argument("input") AddBookInput input) {
+        Author author = new Author();
+        author.setId(input.getAuthorId());
 
         Book book = new Book();
-        book.setId(id);
-        book.setTitle(title);
-//        book.setAuthor(author);
-        book.setPrice(price);
+        book.setId(input.getId());
+        book.setTitle(input.getTitle());
+        book.setAuthor(author);
+        book.setPrice(input.getPrice());
         return bookService.addBook(book);
     }
 }
